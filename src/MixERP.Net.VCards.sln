@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{249623F7-9735-4121-AD2E-2BE58C115905}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82B24621-0684-4E7A-BF6F-631AF100D8FE}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MixERP.Net.VCards", "MixERP.Net.VCards\MixERP.Net.VCards.xproj", "{764D0771-F9C1-49F4-9897-8BBD28942A43}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MixERP.Net.VCards.UI", "MixERP.Net.VCards.UI\MixERP.Net.VCards.UI.xproj", "{B268507A-08ED-4E62-99C9-91DC0C5C0E4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{764D0771-F9C1-49F4-9897-8BBD28942A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764D0771-F9C1-49F4-9897-8BBD28942A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764D0771-F9C1-49F4-9897-8BBD28942A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764D0771-F9C1-49F4-9897-8BBD28942A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B268507A-08ED-4E62-99C9-91DC0C5C0E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B268507A-08ED-4E62-99C9-91DC0C5C0E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B268507A-08ED-4E62-99C9-91DC0C5C0E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B268507A-08ED-4E62-99C9-91DC0C5C0E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{764D0771-F9C1-49F4-9897-8BBD28942A43} = {249623F7-9735-4121-AD2E-2BE58C115905}
+		{B268507A-08ED-4E62-99C9-91DC0C5C0E4B} = {249623F7-9735-4121-AD2E-2BE58C115905}
+	EndGlobalSection
+EndGlobal
