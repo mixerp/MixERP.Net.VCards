@@ -1,6 +1,6 @@
 # MixERP.Net.VCards
 
-VCards is a standard-compliant, lightweight, and forgiving vCard parser written in C# which supports producing and serializing vCards. The following versions are supported:
+VCards is a standard-compliant, lightweight, and forgiving vCard parser written in C# which supports parsing and serializing vCards. The following versions are supported:
 
 - Version 2.1
 - Version 3.0
