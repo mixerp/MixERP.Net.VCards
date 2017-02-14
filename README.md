@@ -72,7 +72,7 @@ For more info, please see the [specifications here](https://www.imc.org/pdi/vcar
 - Mailer (`MAILER` string)
 - Title (`TITLE` string)
 - Role (`ROLE` string)
-- TimeZone (`TITLE` TimeZoneInfo)
+- Time Zone (`TITLE` TimeZoneInfo)
 - Logo (`LOGO` string, Base64 Encoded)
 - Photo (`PHOTO` string, Base64 Encoded)
 - Note (`NOTE` string)
@@ -81,7 +81,7 @@ For more info, please see the [specifications here](https://www.imc.org/pdi/vcar
 - Unique Identifier (`UID` string)
 - Version (`VERSION` enum)
 - Organization (`ORG` string)
-- OrganizationalUnit (`ORG` string)
+- Organizational Unit (`ORG` string)
 - Longitude (`GEO` double)
 - Latitude (`GEO` double)
 
