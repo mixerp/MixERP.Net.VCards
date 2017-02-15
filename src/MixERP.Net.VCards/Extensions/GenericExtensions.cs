@@ -2,9 +2,9 @@ using System;
 
 namespace MixERP.Net.VCards.Extensions
 {
-    internal static class GenericExtensions
+    public static class GenericExtensions
     {
-        internal static T ConvertTo<T>(this string valueAsString) where T : struct
+        public static T ConvertTo<T>(this string valueAsString) where T : struct
         {
             if (string.IsNullOrEmpty(valueAsString))
             {
@@ -14,7 +14,7 @@ namespace MixERP.Net.VCards.Extensions
             return (T) Convert.ChangeType(valueAsString, typeof(T));
         }
 
-        internal static T? ConvertToNullableT<T>(this string valueAsString) where T : struct
+        public static T? ConvertToNullableT<T>(this string valueAsString) where T : struct
         {
             if (string.IsNullOrEmpty(valueAsString))
             {
@@ -22,6 +22,16 @@ namespace MixERP.Net.VCards.Extensions
             }
 
             return (T) Convert.ChangeType(valueAsString, typeof(T));
+        }
+
+        public static T Coalesce<T>(this T actual, T substitute)
+        {
+            if (actual == null)
+            {
+                return substitute;
+            }
+
+            return actual;
         }
     }
 }

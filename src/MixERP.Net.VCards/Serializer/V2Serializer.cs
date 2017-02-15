@@ -29,10 +29,11 @@ namespace MixERP.Net.VCards.Serializer
             builder.Append(OrganizationProcessor.Serialize(vcard));
             builder.Append(GeographyProcessor.Serialize(vcard));
 
-            builder.Append(vcard.Addresses.Serialize(vcard.Version));
-            builder.Append(vcard.DeliveryAddress.SerializeDeliveryAddress(vcard.Version));
-            builder.Append(vcard.Telephones.ToVCardToken(vcard.Version));
-            builder.Append(vcard.Emails.ToVCardToken(vcard.Version));
+            builder.Append(AddressesProcessor.Serialize(vcard));
+            builder.Append(DeliveryAddressProcessor.Serialize(vcard));
+            builder.Append(TelephonesProcessor.Serialize(vcard));
+            builder.Append(EmailsProcessor.Serialize(vcard));
+            builder.Append(ExtensionsProcessor.Serialize(vcard));
 
             return builder.ToString();
         }

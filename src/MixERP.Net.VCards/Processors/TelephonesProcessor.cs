@@ -10,22 +10,22 @@ namespace MixERP.Net.VCards.Processors
 {
     internal static class TelephonesProcessor
     {
-        internal static string ToVCardToken(this IEnumerable<Telephone> value, VCardVersion version)
+        internal static string Serialize(VCard vcard)
         {
-            if (value == null)
+            if (vcard.Telephones == null)
             {
                 return string.Empty;
             }
 
             var builder = new StringBuilder();
 
-            foreach (var phone in value)
+            foreach (var phone in vcard.Telephones)
             {
-                string type = phone.Type.ToVCardString(version);
+                string type = phone.Type.ToVCardString(vcard.Version);
 
                 string key = "TEL";
 
-                if (version == VCardVersion.V4)
+                if (vcard.Version == VCardVersion.V4)
                 {
                     if (phone.Preference > 0)
                     {
@@ -33,7 +33,7 @@ namespace MixERP.Net.VCards.Processors
                     }
                 }
 
-                builder.Append(GroupProcessor.Serialize(key, version, type, true, phone.Number));
+                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, phone.Number));
             }
 
             return builder.ToString();

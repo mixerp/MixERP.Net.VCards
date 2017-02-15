@@ -9,20 +9,20 @@ namespace MixERP.Net.VCards.Processors
 {
     internal static class DeliveryAddressProcessor
     {
-        internal static string SerializeDeliveryAddress(this DeliveryAddress value, VCardVersion version)
+        internal static string Serialize(VCard vcard)
         {
-            if (value == null)
+            if (vcard.DeliveryAddress == null)
             {
                 return string.Empty;
             }
 
             var builder = new StringBuilder();
 
-            string type = value.Type.ToVCardString();
+            string type = vcard.DeliveryAddress.Type.ToVCardString();
 
             const string key = "LABEL";
 
-            builder.Append(GroupProcessor.Serialize(key, version, type, true, value.Address.Escape()));
+            builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, vcard.DeliveryAddress.Address.Escape()));
 
             return builder.ToString();
         }

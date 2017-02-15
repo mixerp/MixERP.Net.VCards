@@ -1,12 +1,50 @@
 ﻿{
-  "version": "1.0.0-*",
-  "dependencies": {
-    "NETStandard.Library": "1.6.0"
+  "version": "1.0.4-*",
+  "description": "VCards is a cross-platform, standard-compliant, lightweight, and forgiving vCard parser written in C# which supports parsing and serializing vCards.",
+  "packOptions": {
+    "authors": [
+      "MixERP",
+      "Binod Nirvan"
+    ],
+    "tags": [
+      "vcard",
+      "vcf",
+      "mixerp",
+      "netcore",
+      "osx",
+      "linux"
+    ],
+    "projectUrl": "https://github.com/mixerp/mixerp.net.vcards",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0"
   },
-
   "frameworks": {
+    "net461": {},
+    "net46": {},
+    "net45": {},
+    "net40": {},
+    "netstandard1.3": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    },
+    "netstandard1.4": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    },
+    "netstandard1.5": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    },
     "netstandard1.6": {
-      "imports": "dnxcore50"
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
     }
   },
   "scripts": {

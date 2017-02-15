@@ -10,7 +10,7 @@ namespace MixERP.Net.VCards.Processors
 {
     internal static class AddressesProcessor
     {
-        private static string Serialize(this Address address, VCardVersion version)
+        private static string Serialize(Address address, VCardVersion version)
         {
             string type = address.Type.ToVCardString();
 
@@ -117,18 +117,18 @@ namespace MixERP.Net.VCards.Processors
             vcard.Addresses = addresses;
         }
 
-        internal static string Serialize(this IEnumerable<Address> value, VCardVersion version)
+        internal static string Serialize(VCard vcard)
         {
-            if (value == null)
+            if (vcard.Addresses == null)
             {
                 return string.Empty;
             }
 
             var builder = new StringBuilder();
 
-            foreach (var address in value)
+            foreach (var address in vcard.Addresses)
             {
-                builder.Append(address.Serialize(version));
+                builder.Append(Serialize(address, vcard.Version));
             }
 
             return builder.ToString();

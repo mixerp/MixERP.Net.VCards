@@ -36,7 +36,7 @@ namespace MixERP.Net.VCards.Processors
                 return null;
             }
 
-            TimeSpan timeSpan;
+            var timeSpan = TimeSpan.Zero;
 
             if (value.Contains(":"))
             {
@@ -48,12 +48,12 @@ namespace MixERP.Net.VCards.Processors
                 {
                     value = value.Substring(1);
 
-                    if(value.Length == 4)
+                    if (value.Length == 4)
                     {
                         timeSpan = TimeSpan.ParseExact(value, "hhmm", CultureInfo.InvariantCulture).Negate();
                     }
 
-                    if(value.Length == 6)
+                    if (value.Length == 6)
                     {
                         timeSpan = TimeSpan.ParseExact(value, "hhmmss", CultureInfo.InvariantCulture).Negate();
                     }
@@ -62,6 +62,11 @@ namespace MixERP.Net.VCards.Processors
                 {
                     timeSpan = TimeSpan.ParseExact(value, "hhmm", CultureInfo.InvariantCulture);
                 }
+            }
+
+            if (timeSpan == TimeSpan.Zero)
+            {
+                return null;
             }
 
             return TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(x => x.BaseUtcOffset == timeSpan);

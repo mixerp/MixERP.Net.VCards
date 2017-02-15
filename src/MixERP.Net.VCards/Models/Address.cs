@@ -34,7 +34,7 @@ namespace MixERP.Net.VCards.Models
         public AddressType Type { get; set; }
 
         /// <summary>
-        /// Post office box number
+        ///     Post office box number
         /// </summary>
         public string PoBox { get; set; }
 
@@ -50,11 +50,17 @@ namespace MixERP.Net.VCards.Models
         public string Country { get; set; }
 
         #region v4.0
+
         public double? Longitude { get; set; }
         public double? Latitude { get; set; }
         public string Label { get; set; }
         public TimeZoneInfo TimeZone { get; set; }
         public int Preference { get; set; }
+
+        #endregion
+
+        #region Non Standard
+        public IEquatable<CustomExtension> Extensions { get; set; }
         #endregion
     }
 }

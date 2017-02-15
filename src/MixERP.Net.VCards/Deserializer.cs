@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MixERP.Net.VCards.Helpers;
 using MixERP.Net.VCards.Parser;
 
@@ -24,9 +25,18 @@ namespace MixERP.Net.VCards
                     continue;
                 }
 
-                if (AllParsers.Parsers.ContainsKey(token.Key))
+                var keys = AllParsers.Parsers.Keys.ToList();
+                foreach (var key in keys)
                 {
-                    var implementation = AllParsers.Parsers[token.Key];
+                    var pattern = "^" + Regex.Escape(key).Replace("\\*", ".*") + "$";
+                    var match = Regex.IsMatch(token.Key, pattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+                    if (!match)
+                    {
+                        continue;
+                    }
+
+                    var implementation = AllParsers.Parsers[key];
                     implementation.Invoke(token, ref vcard);
                 }
             }

@@ -10,22 +10,22 @@ namespace MixERP.Net.VCards.Processors
 {
     internal static class EmailsProcessor
     {
-        internal static string ToVCardToken(this IEnumerable<Email> value, VCardVersion version)
+        internal static string Serialize(VCard vcard)
         {
-            if (value == null)
+            if (vcard.Emails == null)
             {
                 return string.Empty;
             }
 
             var builder = new StringBuilder();
 
-            foreach (var email in value)
+            foreach (var email in vcard.Emails)
             {
                 string type = email.Type.ToVCardString();
 
                 string key = "EMAIL";
 
-                if (version == VCardVersion.V4)
+                if (vcard.Version == VCardVersion.V4)
                 {
                     if (email.Preference > 0)
                     {
@@ -33,7 +33,7 @@ namespace MixERP.Net.VCards.Processors
                     }
                 }
 
-                builder.Append(GroupProcessor.Serialize(key, version, type, true, email.EmailAddress));
+                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, email.EmailAddress));
             }
 
             return builder.ToString();

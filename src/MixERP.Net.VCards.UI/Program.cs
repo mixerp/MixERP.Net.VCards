@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using MixERP.Net.VCards.Models;
 using MixERP.Net.VCards.Serializer;
 using MixERP.Net.VCards.Types;
+using MixERP.Net.VCards.Extensions;
 
 namespace MixERP.Net.VCards.UI
 {
@@ -20,7 +21,7 @@ namespace MixERP.Net.VCards.UI
             CreateVCard();
             ParseVCard();
 
-            if(_failures > 0)
+            if (_failures > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"{_failures} out of {_total} failed.");
@@ -31,7 +32,25 @@ namespace MixERP.Net.VCards.UI
                 Console.WriteLine("All tests passed.");
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Reading sample vcards.");
+
+            ReadSampleCards();
             Console.ReadLine();
+        }
+
+        private static void ReadSampleCards()
+        {
+            string root = AppContext.BaseDirectory;
+            string path = Path.Combine(root, "../../../sample-vcards.vcf");
+
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+            var vcards = Deserializer.Deserialize(path).ToList();
+
+            watch.Stop();
+            string elapsedTime = (watch.ElapsedMilliseconds / 600.00).ToString("N2");
+            Console.WriteLine($"Parsed {vcards.Count} vcards in {elapsedTime} seconds.");
         }
 
         private static void CreateVCard()
@@ -67,9 +86,9 @@ namespace MixERP.Net.VCards.UI
                 AssertValue("Prefix", expected.Prefix, actual.Prefix);
                 AssertValue("Suffix", expected.Suffix, actual.Suffix);
                 AssertValue("BirthDay", expected.BirthDay?.ToString("o"), actual.BirthDay?.ToString("o"));
-                AssertValue("Addresses", JsonConvert.SerializeObject(expected.Addresses.Or(new List<Address>()).OrderBy(x => x.Preference).ThenBy(x => x.Locality), Formatting.Indented), JsonConvert.SerializeObject(actual.Addresses.Or(new List<Address>()).OrderBy(x => x.Preference).ThenBy(x => x.Locality), Formatting.Indented));
-                AssertValue("DeliveryAddress", JsonConvert.SerializeObject(expected.DeliveryAddress.Or(new DeliveryAddress()), Formatting.Indented), JsonConvert.SerializeObject(actual.DeliveryAddress.Or(new DeliveryAddress()), Formatting.Indented));
-                AssertValue("Telephones", JsonConvert.SerializeObject(expected.Telephones.Or(new List<Telephone>()).OrderBy(x => x.Type).ThenBy(x => x.Number), Formatting.Indented), JsonConvert.SerializeObject(actual.Telephones.Or(new List<Telephone>()).OrderBy(x => x.Type).ThenBy(x => x.Number), Formatting.Indented));
+                AssertValue("Addresses", JsonConvert.SerializeObject(expected.Addresses.Coalesce(new List<Address>()).OrderBy(x => x.Preference).ThenBy(x => x.Locality), Formatting.Indented), JsonConvert.SerializeObject(actual.Addresses.Coalesce(new List<Address>()).OrderBy(x => x.Preference).ThenBy(x => x.Locality), Formatting.Indented));
+                AssertValue("DeliveryAddress", JsonConvert.SerializeObject(expected.DeliveryAddress.Coalesce(new DeliveryAddress()), Formatting.Indented), JsonConvert.SerializeObject(actual.DeliveryAddress.Coalesce(new DeliveryAddress()), Formatting.Indented));
+                AssertValue("Telephones", JsonConvert.SerializeObject(expected.Telephones.Coalesce(new List<Telephone>()).OrderBy(x => x.Type).ThenBy(x => x.Number), Formatting.Indented), JsonConvert.SerializeObject(actual.Telephones.Coalesce(new List<Telephone>()).OrderBy(x => x.Type).ThenBy(x => x.Number), Formatting.Indented));
                 AssertValue("Emails", JsonConvert.SerializeObject(expected.Emails, Formatting.Indented), JsonConvert.SerializeObject(actual.Emails, Formatting.Indented));
                 AssertValue("Mailer ", expected.Mailer, actual.Mailer);
                 AssertValue("Title", expected.Title, actual.Title);
@@ -104,9 +123,46 @@ namespace MixERP.Net.VCards.UI
                 AssertValue("Relations", JsonConvert.SerializeObject(expected.Relations, Formatting.Indented), JsonConvert.SerializeObject(actual.Relations, Formatting.Indented));
                 AssertValue("CalendarUserAddresses", JsonConvert.SerializeObject(expected.CalendarUserAddresses, Formatting.Indented), JsonConvert.SerializeObject(actual.CalendarUserAddresses, Formatting.Indented));
                 AssertValue("CalendarAddresses", JsonConvert.SerializeObject(expected.CalendarAddresses, Formatting.Indented), JsonConvert.SerializeObject(actual.CalendarAddresses, Formatting.Indented));
+
+                AssertValue(expected.CustomExtensions, actual.CustomExtensions);
             }
         }
 
+        private static string Serialize(IEnumerable<CustomExtension> value)
+        {
+            var distinct = new List<CustomExtension>();
+            var extensions = value.Coalesce(new List<CustomExtension>());
+
+            foreach (var extension in extensions)
+            {
+                string key = extension.Key;
+                var entry = distinct.FirstOrDefault(x => x.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
+
+                if (entry != null)
+                {
+                    entry.Values = entry.Values.Union(extension.Values);
+                }
+                else
+                {
+                    distinct.Add(new CustomExtension
+                    {
+                        Key = extension.Key,
+                        Values = extension.Values
+                    });
+                }
+
+            }
+
+            return JsonConvert.SerializeObject(distinct.OrderBy(x => x.Key).ThenBy(x => x.Values), Formatting.Indented);
+        }
+        private static void AssertValue(IEnumerable<CustomExtension> expected, IEnumerable<CustomExtension> actual)
+        {
+            var want = Serialize(expected);
+            var have = Serialize(actual);
+
+            AssertValue("Extensions", want, have);
+
+        }
         //[Fact]
         private static void AssertValue(string propertyName, string expected, string actual)
         {
@@ -114,13 +170,13 @@ namespace MixERP.Net.VCards.UI
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (OnlyLogFailed)
             {
-                if (expected.Or("").Equals(actual.Or(""), StringComparison.OrdinalIgnoreCase))
+                if (expected.Coalesce("").Equals(actual.Coalesce(""), StringComparison.OrdinalIgnoreCase))
                 {
                     return;
                 }
             }
 
-            if (expected.Or("").Equals(actual.Or(""), StringComparison.OrdinalIgnoreCase))
+            if (expected.Coalesce("").Equals(actual.Coalesce(""), StringComparison.OrdinalIgnoreCase))
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Property : {propertyName} (PASSED)");

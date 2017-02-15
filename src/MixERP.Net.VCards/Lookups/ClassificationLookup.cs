@@ -14,7 +14,7 @@ namespace MixERP.Net.VCards.Lookups
             {ClassificationType.Public, "PUBLIC"}
         };
 
-        internal static string ToVCardString(this ClassificationType type)
+        internal static string ToVCardString(ClassificationType type)
         {
             return Lookup[type];
         }

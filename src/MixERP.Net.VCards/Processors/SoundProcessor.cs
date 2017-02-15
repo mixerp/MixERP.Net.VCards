@@ -13,7 +13,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return Base64ImageProcessor.SerializeBase64String(vcard.Sound, "SOUND", "BASIC", vcard.Version);
+            return Base64StringProcessor.SerializeBase64String(vcard.Sound, "SOUND", "BASIC", vcard.Version);
         }
 
         internal static void Parse(Token token, ref VCard vcard)

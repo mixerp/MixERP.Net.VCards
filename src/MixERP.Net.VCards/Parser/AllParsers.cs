@@ -29,6 +29,8 @@ namespace MixERP.Net.VCards.Parser
             {"UID", UidProcessor.Parse},
             {"ORG", OrganizationProcessor.Parse}, //Organization, OrganizationalUnit
             {"GEO", GeographyProcessor.Parse}, //Longitude, Latitude
+            {"X-*", ExtensionsProcessor.Parse}, //Longitude, Latitude
+            {"item*", ExtensionsProcessor.Parse}, //Longitude, Latitude
             #endregion
 
             #region v3.0

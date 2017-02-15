@@ -302,5 +302,7 @@ namespace MixERP.Net.VCards
         public IEnumerable<Uri> CalendarAddresses { get; set; }
 
         #endregion
+
+        public IEnumerable<CustomExtension> CustomExtensions { get; set; }
     }
 }

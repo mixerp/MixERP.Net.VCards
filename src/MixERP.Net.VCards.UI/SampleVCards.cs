@@ -159,7 +159,30 @@ namespace MixERP.Net.VCards.UI
                     {
                         new Uri("http://cal.example.com/calA"),
                         new Uri("ftp://ftp.example.com/calA.ics", UriKind.Absolute)
+                    },
+                CustomExtensions = new List<CustomExtension>
+                {
+                    new CustomExtension
+                    {
+                        Key = "X-ASSISTANT",
+                        Value = "William James"
+                    },
+                    new CustomExtension
+                    {
+                        Key = "X-ASSISTANT",
+                        Values = new[]{"John Crichton", "aeryn sun" }
+                    },
+                    new CustomExtension
+                    {
+                        Key = "X-SKYPE",
+                        Values = new[]{"092B3492", "092F3492" }
+                    },
+                    new CustomExtension
+                    {
+                        Key = "item1.TEL",
+                        Values = new[]{"092B3492", "092F3492" }
                     }
+                }
             };
 
         }
