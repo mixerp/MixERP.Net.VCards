@@ -97,9 +97,9 @@ namespace MixERP.Net.VCards
         /// R0lGODdhfgA4AOYAAAAAAK+vr62trVIxa6WlpZ+fnzEpCEpzlAha/0Kc74+PjyGM ...</code>
         ///     <para>Support for this property is optional for vCard Writers conforming to this specification.</para>
         /// </summary>
-        public string Logo { get; set; }
+        public Photo Logo { get; set; }
 
-        public string Photo { get; set; }
+        public Photo Photo { get; set; }
 
 
         /// <summary>

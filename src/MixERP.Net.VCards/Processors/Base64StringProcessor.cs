@@ -14,6 +14,15 @@ namespace MixERP.Net.VCards.Processors
             /***************************************************************
                 V2.1
 
+                PHOTO;VALUE=URL:file:///jqpublic.gif
+
+                OR
+
+                PHOTO;ENCODING=BASE64;TYPE=GIF:
+                    R0lGODdhfgA4AOYAAAAAAK+vr62trVIxa6WlpZ+fnzEpCEpzlAha/0Kc74+PjyGM
+                    SuecKRhrtX9/fzExORBSjCEYCGtra2NjYyF7nDGE50JrhAg51qWtOTl7vee1MWu1
+                    50o5e3PO/3sxcwAx/4R7GBgQOcDAwFoAQt61hJyMGHuUSpRKIf8A/wAY54yMjHtz
+                ...
 
             **************************************************************/
 
@@ -24,7 +33,15 @@ namespace MixERP.Net.VCards.Processors
                 /***************************************************************
                     Looks like this in V3.0
 
+                    PHOTO;VALUE=uri:http://www.abc.com/pub/photos
+                     /jqpublic.gif
 
+                    OR
+
+                    PHOTO;ENCODING=b;TYPE=JPEG:MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvcN
+                     AQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENvbW11bm
+                     ljYXRpb25zIENvcnBvcmF0aW9uMRwwGgYDVQQLExNJbmZvcm1hdGlvbiBTeXN0
+                     <...remainder of "B" encoded binary data...>
                 **************************************************************/
 
                 encoding = "b";

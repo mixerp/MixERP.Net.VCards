@@ -16,7 +16,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            if (!vcard.Categories.Any())
+            if (vcard.Categories == null || !vcard.Categories.Any())
             {
                 return string.Empty;
             }

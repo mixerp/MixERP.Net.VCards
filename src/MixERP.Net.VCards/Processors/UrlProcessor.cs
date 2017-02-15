@@ -11,11 +11,12 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
-            string url = vcard.Url.ToString();
-            if (string.IsNullOrWhiteSpace(url))
+            if(vcard.Url == null)
             {
                 return string.Empty;
             }
+
+            string url = vcard.Url.ToString();
 
             return DefaultSerializer.GetVCardString("URL", url, true, vcard.Version);
         }

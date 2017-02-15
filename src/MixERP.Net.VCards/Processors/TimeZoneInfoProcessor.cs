@@ -1,9 +1,8 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using MixERP.Net.VCards.Models;
 using MixERP.Net.VCards.Serializer;
-using MixERP.Net.VCards.Types;
-using System.Globalization;
 
 namespace MixERP.Net.VCards.Processors
 {
@@ -11,8 +10,13 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string ToVCardValue(TimeZoneInfo timeZone)
         {
+            if (timeZone == null)
+            {
+                return string.Empty;
+            }
+
             var offset = timeZone.BaseUtcOffset;
-            string iso8601 = offset.ToString("hh\\:mm");
+            var iso8601 = offset.ToString("hh\\:mm");
 
             if (offset.TotalMilliseconds < 0)
             {
@@ -74,7 +78,7 @@ namespace MixERP.Net.VCards.Processors
 
         public static void Parse(Token token, ref VCard vcard)
         {
-            string value = token.Values[0];
+            var value = token.Values[0];
             if (string.IsNullOrWhiteSpace(value))
             {
                 return;

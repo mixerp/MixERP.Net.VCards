@@ -24,6 +24,16 @@ namespace MixERP.Net.VCards.Extensions
             return (T) Convert.ChangeType(valueAsString, typeof(T));
         }
 
+        public static string Coalesce(this string actual, string substitute)
+        {
+            if (string.IsNullOrWhiteSpace(actual))
+            {
+                return substitute;
+            }
+
+            return actual;
+        }
+
         public static T Coalesce<T>(this T actual, T substitute)
         {
             if (actual == null)

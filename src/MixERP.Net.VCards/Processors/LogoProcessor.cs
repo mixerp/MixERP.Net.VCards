@@ -1,3 +1,4 @@
+using MixERP.Net.VCards.Extensions;
 using MixERP.Net.VCards.Models;
 
 namespace MixERP.Net.VCards.Processors
@@ -6,12 +7,18 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
-            return Base64StringProcessor.SerializeBase64String(vcard.Logo, "LOGO", "GIF", vcard.Version);
+            if (vcard.Logo == null)
+            {
+                return string.Empty;
+            }
+
+            var extension = vcard.Logo.Extension.Coalesce("jpg");
+            return Base64StringProcessor.SerializeBase64String(vcard.Logo.Contents, "LOGO", extension, vcard.Version);
         }
 
         public static void Parse(Token token, ref VCard vcard)
         {
-            vcard.Logo = token.Values[0];
+            vcard.Logo = PhotoProcessor.GetPhoto(token, vcard);
         }
     }
 }
