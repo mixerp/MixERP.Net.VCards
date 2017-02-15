@@ -35,7 +35,7 @@ namespace MixERP.Net.VCards.Processors
 
                 if (address.TimeZone != null)
                 {
-                    key = key + ";TZ=\"" + address.TimeZone.ToVCardValue(version) + "\"";
+                    key = key + ";TZ=\"" + TimeZoneInfoProcessor.ToVCardValue(address.TimeZone) + "\"";
                 }
             }
 
