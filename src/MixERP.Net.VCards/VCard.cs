@@ -32,7 +32,7 @@ namespace MixERP.Net.VCards
         public IEnumerable<Telephone> Telephones { get; set; }
         public IEnumerable<Email> Emails { get; set; }
 
-        public string Mailer { get; set; } = "Frapid";
+        public string Mailer { get; set; }
 
         /// <summary>
         ///     <para>

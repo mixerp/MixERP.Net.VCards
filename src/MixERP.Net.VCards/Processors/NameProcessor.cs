@@ -3,9 +3,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class NameProcessor
+    public static class NameProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             if ((vcard.Version == VCardVersion.V2_1 && vcard.Version == VCardVersion.V3) || string.IsNullOrWhiteSpace(vcard.SortString))
             {
@@ -36,7 +36,7 @@ namespace MixERP.Net.VCards.Processors
             return GroupProcessor.Serialize(key, vcard.Version, string.Empty, true, vcard.LastName, vcard.FirstName, vcard.MiddleName, vcard.Prefix, vcard.Suffix);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             if (token.AdditionalKeyMembers.ContainsKey("SORT-AS"))
             {

@@ -5,9 +5,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class ClassificationProcessor
+    public static class ClassificationProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //The property "CLASS" is valid only for VCardVersion 3.0 and above.
             if (vcard.Version == VCardVersion.V2_1)
@@ -18,7 +18,7 @@ namespace MixERP.Net.VCards.Processors
             return DefaultSerializer.GetVCardString("CLASS", ClassificationLookup.ToVCardString(vcard.Classification), true, vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             vcard.Classification = ClassificationLookup.Parse(token.Values[0]);
         }

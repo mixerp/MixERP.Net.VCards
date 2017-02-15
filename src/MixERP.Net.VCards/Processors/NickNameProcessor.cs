@@ -4,9 +4,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class NickNameProcessor
+    public static class NickNameProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //The property "NICKNAME" is valid only for VCardVersion 3.0 and above.
             if (vcard.Version == VCardVersion.V2_1)
@@ -17,7 +17,7 @@ namespace MixERP.Net.VCards.Processors
             return DefaultSerializer.GetVCardString("NICKNAME", vcard.NickName, false, vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             vcard.NickName = token.Values[0];
         }

@@ -3,9 +3,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class Base64StringProcessor
+    public static class Base64StringProcessor
     {
-        internal static string SerializeBase64String(string value, string key, string type, VCardVersion version)
+        public static string SerializeBase64String(string value, string key, string type, VCardVersion version)
         {
             if (string.IsNullOrWhiteSpace(value))
             {

@@ -5,9 +5,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class SourceUriProcessor
+    public static class SourceUriProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //Only vCard 4.0 supports SOURCE property
             if (vcard.Version != VCardVersion.V4)
@@ -25,7 +25,7 @@ namespace MixERP.Net.VCards.Processors
             return DefaultSerializer.GetVCardString("SOURCE", source, false, vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string value = token.Values[0];
 

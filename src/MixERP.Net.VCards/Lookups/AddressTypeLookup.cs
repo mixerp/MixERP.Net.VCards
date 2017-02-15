@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class AddressTypeLookup
+    public static class AddressTypeLookup
     {
         private static readonly Dictionary<AddressType, string> Lookup = new Dictionary<AddressType, string>
         {
@@ -17,12 +17,12 @@ namespace MixERP.Net.VCards.Lookups
             {AddressType.Work, "WORK"}
         };
 
-        internal static string ToVCardString(this AddressType addressType)
+        public static string ToVCardString(this AddressType addressType)
         {
             return Lookup[addressType];
         }
 
-        internal static AddressType Parse(string addressType)
+        public static AddressType Parse(string addressType)
         {
             if (string.IsNullOrWhiteSpace(addressType))
             {

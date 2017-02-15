@@ -4,9 +4,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class SortStringProcessor
+    public static class SortStringProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //Please note that the property "SORT-STRING" only exists for VCardVersion 3.0
             //where VCardVersion 4.0 uses "SORT-AS" key in N property
@@ -23,7 +23,7 @@ namespace MixERP.Net.VCards.Processors
             return DefaultSerializer.GetVCardString("SORT-STRING", vcard.SortString, true, vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             if (!string.IsNullOrWhiteSpace(vcard.SortString))
             {

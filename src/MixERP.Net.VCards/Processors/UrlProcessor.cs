@@ -7,9 +7,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class UrlProcessor
+    public static class UrlProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             string url = vcard.Url.ToString();
             if (string.IsNullOrWhiteSpace(url))
@@ -20,7 +20,7 @@ namespace MixERP.Net.VCards.Processors
             return DefaultSerializer.GetVCardString("URL", url, true, vcard.Version);
         }
 
-        internal static string SerializeUris(IEnumerable<Uri> uris, string key, VCardVersion version)
+        public static string SerializeUris(IEnumerable<Uri> uris, string key, VCardVersion version)
         {
             var builder = new StringBuilder();
             if (uris == null)
@@ -44,7 +44,7 @@ namespace MixERP.Net.VCards.Processors
             return builder.ToString();
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string url = token.Values[0];
             if (!string.IsNullOrWhiteSpace(url))

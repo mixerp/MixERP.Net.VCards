@@ -5,9 +5,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class CalendarAddressesProcessor
+    public static class CalendarAddressesProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //Only vCard 4.0 supports CALADRURI property
             if (vcard.Version != VCardVersion.V4)
@@ -18,7 +18,7 @@ namespace MixERP.Net.VCards.Processors
             return UrlProcessor.SerializeUris(vcard.CalendarAddresses, "CALURI", vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string value = token.Values[0];
             if (string.IsNullOrWhiteSpace(value))

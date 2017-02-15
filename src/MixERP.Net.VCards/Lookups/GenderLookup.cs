@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class GenderLookup
+    public static class GenderLookup
     {
         private static readonly Dictionary<Gender, string> Lookup = new Dictionary<Gender, string>
         {
@@ -16,12 +16,12 @@ namespace MixERP.Net.VCards.Lookups
             {Gender.Unknown, "U"}
         };
 
-        internal static string ToVCardString(this Gender type)
+        public static string ToVCardString(this Gender type)
         {
             return Lookup[type];
         }
 
-        internal static Gender Parse(string type)
+        public static Gender Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

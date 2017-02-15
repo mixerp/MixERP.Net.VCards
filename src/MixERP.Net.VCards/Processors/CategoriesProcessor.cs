@@ -6,9 +6,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class CategoriesProcessor
+    public static class CategoriesProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //The property "CATEGORIES" is valid only for VCardVersion 3.0 and above.
             if (vcard.Version == VCardVersion.V2_1)
@@ -31,7 +31,7 @@ namespace MixERP.Net.VCards.Processors
             return DefaultSerializer.GetVCardString("CATEGORIES", categories, false, vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string categories = token.Values[0];
             if (string.IsNullOrWhiteSpace(categories))

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MixERP.Net.VCards.Helpers
 {
-    internal static class FileHelper
+    public static class FileHelper
     {
-        internal static string[] ReadVCardString(string path)
+        public static string[] ReadVCardString(string path)
         {
             if (!File.Exists(path))
             {
@@ -25,9 +25,7 @@ namespace MixERP.Net.VCards.Helpers
                 }
 
                 string contents = builder.ToString();
-
-                contents = contents.Replace("BEGIN:VCARD", "");
-                return contents.Split(new[] { "END:VCARD" }, StringSplitOptions.RemoveEmptyEntries);
+                return VCardHelper.SplitCards(contents);
             }
         }
     }

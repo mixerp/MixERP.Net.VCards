@@ -9,9 +9,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class LanguagesProcessor
+    public static class LanguagesProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             //Only vCard 4.0 supports LANG property
             if (vcard.Version != VCardVersion.V4)
@@ -44,7 +44,7 @@ namespace MixERP.Net.VCards.Processors
             return builder.ToString();
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             var language = new Language();
             var preference = token.AdditionalKeyMembers.FirstOrDefault(x => x.Key == "PREF");

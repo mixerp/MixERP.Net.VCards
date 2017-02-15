@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class VersionLookup
+    public static class VersionLookup
     {
         private static readonly Dictionary<VCardVersion, string> Lookup = new Dictionary<VCardVersion, string>
         {
@@ -14,12 +14,12 @@ namespace MixERP.Net.VCards.Lookups
             {VCardVersion.V4, "4.0"}
         };
 
-        internal static string ToVCardString(this VCardVersion addressType)
+        public static string ToVCardString(this VCardVersion addressType)
         {
             return Lookup[addressType];
         }
 
-        internal static VCardVersion Parse(string type)
+        public static VCardVersion Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

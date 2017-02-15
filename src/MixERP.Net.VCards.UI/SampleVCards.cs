@@ -6,9 +6,9 @@ using System.Globalization;
 
 namespace MixERP.Net.VCards.UI
 {
-    internal static class SampleVCards
+    public static class SampleVCards
     {
-        internal static VCard Get()
+        public static VCard Get()
         {
             return new VCard
             {

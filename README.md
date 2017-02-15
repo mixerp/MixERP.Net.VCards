@@ -44,7 +44,7 @@ or
 
 ```csharp
 string contents = File.ReadAllText(path, Encoding.UTF8);
-IEnumerable<VCard> vcards = MixERP.Net.VCards.Deserializer.FromString(contents);
+IEnumerable<VCard> vcards = MixERP.Net.VCards.Deserializer.GetVCards(contents);
 
 foreach (var vcard in vcards)
 {

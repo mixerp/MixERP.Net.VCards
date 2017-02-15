@@ -8,7 +8,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class AddressesProcessor
+    public static class AddressesProcessor
     {
         private static string Serialize(Address address, VCardVersion version)
         {
@@ -42,7 +42,7 @@ namespace MixERP.Net.VCards.Processors
             return GroupProcessor.Serialize(key, version, type, true, address.PoBox, address.ExtendedAddress, address.Street, address.Locality, address.Region, address.PostalCode, address.Country);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             var address = new Address();
 
@@ -117,7 +117,7 @@ namespace MixERP.Net.VCards.Processors
             vcard.Addresses = addresses;
         }
 
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             if (vcard.Addresses == null)
             {

@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class EmailTypeLookup
+    public static class EmailTypeLookup
     {
         private static readonly Dictionary<EmailType, string> Lookup = new Dictionary<EmailType, string>
         {
@@ -23,12 +23,12 @@ namespace MixERP.Net.VCards.Lookups
             {EmailType.X400, "X400"}
         };
 
-        internal static string ToVCardString(this EmailType type)
+        public static string ToVCardString(this EmailType type)
         {
             return Lookup[type];
         }
 
-        internal static string ToVCardString(this EmailType? type)
+        public static string ToVCardString(this EmailType? type)
         {
             if (type == null)
             {
@@ -38,7 +38,7 @@ namespace MixERP.Net.VCards.Lookups
             return Lookup[type.Value];
         }
 
-        internal static EmailType Parse(string type)
+        public static EmailType Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

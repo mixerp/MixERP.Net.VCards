@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class RelationTypeLookup
+    public static class RelationTypeLookup
     {
         private static readonly Dictionary<RelationType, string> Lookup = new Dictionary<RelationType, string>
         {
@@ -31,12 +31,12 @@ namespace MixERP.Net.VCards.Lookups
             {RelationType.Emergency, "emergency"}
         };
 
-        internal static string ToVCardString(this RelationType type)
+        public static string ToVCardString(this RelationType type)
         {
             return Lookup[type];
         }
 
-        internal static RelationType Parse(string type)
+        public static RelationType Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

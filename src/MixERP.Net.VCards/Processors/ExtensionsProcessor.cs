@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class ExtensionsProcessor
+    public static class ExtensionsProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             var builder = new StringBuilder();
 
@@ -30,7 +30,7 @@ namespace MixERP.Net.VCards.Processors
             return builder.ToString();
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             var key = token.Key;
             var extensions = (List<CustomExtension>)vcard.CustomExtensions ?? new List<CustomExtension>();

@@ -3,14 +3,14 @@ using MixERP.Net.VCards.Serializer;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class UidProcessor
+    public static class UidProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             return DefaultSerializer.GetVCardString("UID", vcard.UniqueIdentifier, true, vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             vcard.UniqueIdentifier = token.Values[0];
         }

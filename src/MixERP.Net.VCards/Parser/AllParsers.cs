@@ -4,9 +4,9 @@ using MixERP.Net.VCards.Processors;
 
 namespace MixERP.Net.VCards.Parser
 {
-    internal static class AllParsers
+    public static class AllParsers
     {
-        internal static readonly Dictionary<string, Process> Parsers = new Dictionary<string, Process>
+        public static readonly Dictionary<string, Process> Parsers = new Dictionary<string, Process>
         {
             #region v2.1
             {"VERSION", VersionProcessor.Parse},
@@ -55,6 +55,6 @@ namespace MixERP.Net.VCards.Parser
             #endregion
         };
 
-        internal delegate void Process(Token token, ref VCard vcard);
+        public delegate void Process(Token token, ref VCard vcard);
     }
 }

@@ -2,14 +2,14 @@
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class BirthDayProcessor
+    public static class BirthDayProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             return DateTimeProcessor.Serialize(vcard.BirthDay, "BDAY", vcard.Version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string value = token.Values[0];
             if (string.IsNullOrWhiteSpace(value))

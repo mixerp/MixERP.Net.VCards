@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class TelephoneTypeLookup
+    public static class TelephoneTypeLookup
     {
         private static readonly Dictionary<TelephoneType, string> Lookup = new Dictionary<TelephoneType, string>
         {
@@ -25,7 +25,7 @@ namespace MixERP.Net.VCards.Lookups
             {TelephoneType.Personal, "PCS"}
         };
 
-        internal static string ToVCardString(this TelephoneType type, VCardVersion version)
+        public static string ToVCardString(this TelephoneType type, VCardVersion version)
         {
             string result = Lookup[type];
 
@@ -38,7 +38,7 @@ namespace MixERP.Net.VCards.Lookups
             return result;
         }
 
-        internal static TelephoneType Parse(string type)
+        public static TelephoneType Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

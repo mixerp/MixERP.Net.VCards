@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MixERP.Net.VCards.Parser
 {
-    internal static class TokenParser
+    public static class TokenParser
     {
         private static Dictionary<string, string> GetAdditionalKeyMembers(string data)
         {
@@ -116,7 +116,7 @@ namespace MixERP.Net.VCards.Parser
             };
         }
 
-        internal static IEnumerable<Token> Parse(string contents)
+        public static IEnumerable<Token> Parse(string contents)
         {
             var tokens = new List<Token>();
             if (string.IsNullOrWhiteSpace(contents))

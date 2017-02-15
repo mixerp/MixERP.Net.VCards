@@ -8,9 +8,9 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class EmailsProcessor
+    public static class EmailsProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             if (vcard.Emails == null)
             {
@@ -39,7 +39,7 @@ namespace MixERP.Net.VCards.Processors
             return builder.ToString();
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             var email = new Email();
             var preference = token.AdditionalKeyMembers.FirstOrDefault(x => x.Key == "PREF");

@@ -3,14 +3,14 @@ using MixERP.Net.VCards.Models;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class GeographyProcessor
+    public static class GeographyProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             return GroupProcessor.Serialize("GEO", vcard.Version, string.Empty, false, vcard.Longitude.ToString("N2"), vcard.Latitude.ToString("N2"));
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             if (token.Values.Length > 0)
             {

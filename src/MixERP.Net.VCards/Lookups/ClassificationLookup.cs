@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class ClassificationLookup
+    public static class ClassificationLookup
     {
         private static readonly Dictionary<ClassificationType, string> Lookup = new Dictionary<ClassificationType, string>
         {
@@ -14,12 +14,12 @@ namespace MixERP.Net.VCards.Lookups
             {ClassificationType.Public, "PUBLIC"}
         };
 
-        internal static string ToVCardString(ClassificationType type)
+        public static string ToVCardString(ClassificationType type)
         {
             return Lookup[type];
         }
 
-        internal static ClassificationType Parse(string type)
+        public static ClassificationType Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

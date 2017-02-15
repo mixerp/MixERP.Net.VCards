@@ -4,14 +4,14 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class LastRevisionProcessor
+    public static class LastRevisionProcessor
     {
-        internal static string Serialize(DateTime? value, VCardVersion version)
+        public static string Serialize(DateTime? value, VCardVersion version)
         {
             return DateTimeProcessor.Serialize(value, "REV", version);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string value = token.Values[0];
             if (string.IsNullOrWhiteSpace(value))

@@ -3,9 +3,9 @@ using MixERP.Net.VCards.Processors;
 
 namespace MixERP.Net.VCards.Serializer
 {
-    internal static class V2Serializer
+    public static class V2Serializer
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             var builder = new StringBuilder();
 

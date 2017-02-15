@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class LanguageTypeLookup
+    public static class LanguageTypeLookup
     {
         private static readonly Dictionary<LanguageType, string> Lookup = new Dictionary<LanguageType, string>
         {
@@ -14,12 +14,12 @@ namespace MixERP.Net.VCards.Lookups
             {LanguageType.Unknown, "unknown"}
         };
 
-        internal static string ToVCardString(this LanguageType type)
+        public static string ToVCardString(this LanguageType type)
         {
             return Lookup[type];
         }
 
-        internal static LanguageType Parse(string type)
+        public static LanguageType Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

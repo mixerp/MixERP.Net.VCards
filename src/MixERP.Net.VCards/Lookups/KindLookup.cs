@@ -5,7 +5,7 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Lookups
 {
-    internal static class KindLookup
+    public static class KindLookup
     {
         private static readonly Dictionary<Kind, string> Lookup = new Dictionary<Kind, string>
         {
@@ -15,12 +15,12 @@ namespace MixERP.Net.VCards.Lookups
             {Kind.Location, "location"}
         };
 
-        internal static string ToVCardString(this Kind type)
+        public static string ToVCardString(this Kind type)
         {
             return Lookup[type];
         }
 
-        internal static Kind Parse(string type)
+        public static Kind Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {

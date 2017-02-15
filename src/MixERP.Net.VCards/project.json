@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.4-*",
+  "version": "1.0.5-*",
   "description": "VCards is a cross-platform, standard-compliant, lightweight, and forgiving vCard parser written in C# which supports parsing and serializing vCards.",
   "packOptions": {
     "authors": [

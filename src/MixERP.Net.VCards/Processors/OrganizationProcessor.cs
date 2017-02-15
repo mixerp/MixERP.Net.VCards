@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class OrganizationProcessor
+    public static class OrganizationProcessor
     {
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
             return GroupProcessor.Serialize("ORG", vcard.Version, string.Empty, false, vcard.Organization, vcard.OrganizationalUnit);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             if (token.Values.Length > 0)
             {

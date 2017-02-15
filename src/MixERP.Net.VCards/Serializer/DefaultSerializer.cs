@@ -5,15 +5,15 @@ using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Serializer
 {
-    internal static class DefaultSerializer
+    public static class DefaultSerializer
     {
-        internal static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string type = "", string encoding = "")
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string type = "", string encoding = "")
         {
             string[] types = {type};
             return GetVCardString(key, value, mustEscape, version, types, encoding);
         }
 
-        internal static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, string encoding = "")
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, string encoding = "")
         {
             if (string.IsNullOrWhiteSpace(key))
             {

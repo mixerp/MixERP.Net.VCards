@@ -7,9 +7,9 @@ using System.Globalization;
 
 namespace MixERP.Net.VCards.Processors
 {
-    internal static class TimeZoneInfoProcessor
+    public static class TimeZoneInfoProcessor
     {
-        internal static string ToVCardValue(this TimeZoneInfo timeZone, VCardVersion version)
+        public static string ToVCardValue(TimeZoneInfo timeZone)
         {
             var offset = timeZone.BaseUtcOffset;
             string iso8601 = offset.ToString("hh\\:mm");
@@ -22,14 +22,14 @@ namespace MixERP.Net.VCards.Processors
             return iso8601;
         }
 
-        internal static string Serialize(VCard vcard)
+        public static string Serialize(VCard vcard)
         {
-            return DefaultSerializer.GetVCardString("TZ", vcard.TimeZone.ToVCardValue(vcard.Version), false, vcard.Version);
+            return DefaultSerializer.GetVCardString("TZ", ToVCardValue(vcard.TimeZone), false, vcard.Version);
         }
 
         //Todo: verify the correctness of this function
         //Please note that the string representation of time zone is an ISO 8601 time span.
-        internal static TimeZoneInfo FromVCardValue(string value)
+        public static TimeZoneInfo FromVCardValue(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -72,7 +72,7 @@ namespace MixERP.Net.VCards.Processors
             return TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(x => x.BaseUtcOffset == timeSpan);
         }
 
-        internal static void Parse(Token token, ref VCard vcard)
+        public static void Parse(Token token, ref VCard vcard)
         {
             string value = token.Values[0];
             if (string.IsNullOrWhiteSpace(value))
