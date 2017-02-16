@@ -44,6 +44,11 @@ namespace MixERP.Net.VCards.Processors
 
         public static void Parse(Token token, ref VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(string.Join("", token.Values).Trim()))
+            {
+                return;
+            }
+
             var address = new Address();
 
             if (vcard.Version == VCardVersion.V4)

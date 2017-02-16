@@ -8,6 +8,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(vcard.NickName))
+            {
+                return string.Empty;
+            }
+
             //The property "NICKNAME" is valid only for VCardVersion 3.0 and above.
             if (vcard.Version == VCardVersion.V2_1)
             {

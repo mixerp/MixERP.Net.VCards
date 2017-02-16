@@ -6,6 +6,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if(vcard.BirthDay == null)
+            {
+                return string.Empty;
+            }
+
             return DateTimeProcessor.Serialize(vcard.BirthDay, "BDAY", vcard.Version);
         }
 

@@ -10,18 +10,22 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
-            var builder = new StringBuilder();
-
-            if (vcard.CustomExtensions == null)
+            if (vcard.CustomExtensions == null || vcard.CustomExtensions.Count() == 0)
             {
-                return builder.ToString();
+                return string.Empty;
             }
 
+            var builder = new StringBuilder();
             foreach (var extension in vcard.CustomExtensions)
             {
                 var key = extension.Key;
                 foreach (var value in extension.Values)
                 {
+                    if (string.IsNullOrWhiteSpace(value))
+                    {
+                        continue;
+                    }
+
                     var vcardString = DefaultSerializer.GetVCardString(key, value, true, vcard.Version);
                     builder.Append(vcardString);
                 }

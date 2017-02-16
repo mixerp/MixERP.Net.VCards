@@ -7,6 +7,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace((vcard.Organization + vcard.OrganizationalUnit).Trim()))
+            {
+                return string.Empty;
+            }
+
             return GroupProcessor.Serialize("ORG", vcard.Version, string.Empty, false, vcard.Organization, vcard.OrganizationalUnit);
         }
 

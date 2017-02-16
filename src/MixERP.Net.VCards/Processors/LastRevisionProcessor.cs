@@ -1,14 +1,17 @@
-﻿using System;
-using MixERP.Net.VCards.Models;
-using MixERP.Net.VCards.Types;
+﻿using MixERP.Net.VCards.Models;
 
 namespace MixERP.Net.VCards.Processors
 {
     public static class LastRevisionProcessor
     {
-        public static string Serialize(DateTime? value, VCardVersion version)
+        public static string Serialize(VCard vcard)
         {
-            return DateTimeProcessor.Serialize(value, "REV", version);
+            if (vcard.LastRevision == null)
+            {
+                return string.Empty;
+            }
+
+            return DateTimeProcessor.Serialize(vcard.LastRevision, "REV", vcard.Version);
         }
 
         public static void Parse(Token token, ref VCard vcard)

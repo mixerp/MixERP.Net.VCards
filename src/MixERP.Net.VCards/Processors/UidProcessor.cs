@@ -7,6 +7,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(vcard.UniqueIdentifier))
+            {
+                return string.Empty;
+            }
+
             return DefaultSerializer.GetVCardString("UID", vcard.UniqueIdentifier, true, vcard.Version);
         }
 

@@ -18,12 +18,11 @@ namespace MixERP.Net.VCards.Serializer
             builder.Append(RoleProcessor.Serialize(vcard));
             builder.Append(TimeZoneInfoProcessor.Serialize(vcard));
 
-            //Todo: check if the value is URI or BASE64 string.
             builder.Append(LogoProcessor.Serialize(vcard));
             builder.Append(PhotoProcessor.Serialize(vcard));
 
             builder.Append(NoteProcessor.Serialize(vcard));
-            builder.Append(LastRevisionProcessor.Serialize(vcard.LastRevision, vcard.Version));
+            builder.Append(LastRevisionProcessor.Serialize(vcard));
             builder.Append(UrlProcessor.Serialize(vcard));
             builder.Append(UidProcessor.Serialize(vcard));
             builder.Append(OrganizationProcessor.Serialize(vcard));

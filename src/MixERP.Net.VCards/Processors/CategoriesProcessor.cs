@@ -25,7 +25,12 @@ namespace MixERP.Net.VCards.Processors
 
             if (vcard.Categories != null && vcard.Categories.Any())
             {
-                categories = string.Join(",", vcard.Categories.Select(x => x.Escape()));
+                categories = string.Join(",", vcard.Categories.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Escape()));
+            }
+
+            if (string.IsNullOrWhiteSpace(categories))
+            {
+                return string.Empty;
             }
 
             return DefaultSerializer.GetVCardString("CATEGORIES", categories, false, vcard.Version);

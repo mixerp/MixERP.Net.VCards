@@ -7,6 +7,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(vcard.Mailer))
+            {
+                return string.Empty;
+            }
+
             return DefaultSerializer.GetVCardString("MAILER", vcard.Mailer, true, vcard.Version);
         }
 

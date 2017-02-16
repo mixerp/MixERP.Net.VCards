@@ -7,6 +7,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if(vcard.Anniversary == null)
+            {
+                return string.Empty;
+            }
+
             //Only vCard 4.0 supports ANNIVERSARY property
             if (vcard.Version != VCardVersion.V4)
             {

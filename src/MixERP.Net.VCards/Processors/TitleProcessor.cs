@@ -7,6 +7,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(vcard.Title))
+            {
+                return string.Empty;
+            }
+
             return DefaultSerializer.GetVCardString("TITLE", vcard.Title, false, vcard.Version);
         }
 

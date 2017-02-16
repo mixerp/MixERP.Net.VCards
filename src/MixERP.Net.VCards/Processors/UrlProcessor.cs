@@ -33,6 +33,11 @@ namespace MixERP.Net.VCards.Processors
 
             foreach (var uri in uris)
             {
+                if(uri == null)
+                {
+                    continue;
+                }
+
                 preference++;
 
                 string memberKey = key;

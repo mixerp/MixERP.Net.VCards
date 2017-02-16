@@ -20,7 +20,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            if (vcard.Relations == null)
+            if (vcard.Relations == null || vcard.Relations.Count() == 0)
             {
                 return string.Empty;
             }
@@ -46,6 +46,11 @@ namespace MixERP.Net.VCards.Processors
 
         public static void Parse(Token token, ref VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(token.Values[0]))
+            {
+                return;
+            }
+
             var relation = new Relation();
             var preference = token.AdditionalKeyMembers.FirstOrDefault(x => x.Key == "PREF");
             var type = token.AdditionalKeyMembers.FirstOrDefault(x => x.Key == "TYPE");

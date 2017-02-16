@@ -13,6 +13,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (vcard.Impps == null || vcard.Impps.Count() == 0)
+            {
+                return string.Empty;
+            }
+
             //Only vCard 4.0 supports IMPP property
             if (vcard.Version != VCardVersion.V4)
             {
@@ -29,6 +34,11 @@ namespace MixERP.Net.VCards.Processors
 
             foreach (var impp in vcard.Impps)
             {
+                if(impp.Address == null)
+                {
+                    continue;
+                }
+
                 string key = "IMPP";
 
                 if (impp.Preference > 0)
@@ -44,6 +54,11 @@ namespace MixERP.Net.VCards.Processors
 
         public static void Parse(Token token, ref VCard vcard)
         {
+            if (string.IsNullOrWhiteSpace(token.Values[0]))
+            {
+                return;
+            }
+
             var impp = new Impp();
             var preference = token.AdditionalKeyMembers.FirstOrDefault(x => x.Key == "PREF");
 

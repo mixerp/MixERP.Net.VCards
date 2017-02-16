@@ -28,7 +28,13 @@ namespace MixERP.Net.VCards.Processors
 
         public static string Serialize(VCard vcard)
         {
-            return DefaultSerializer.GetVCardString("TZ", ToVCardValue(vcard.TimeZone), false, vcard.Version);
+            var timeZone = ToVCardValue(vcard.TimeZone);
+            if (string.IsNullOrWhiteSpace(timeZone))
+            {
+                return string.Empty;
+            }
+
+            return DefaultSerializer.GetVCardString("TZ", timeZone, false, vcard.Version);
         }
 
         //Todo: verify the correctness of this function

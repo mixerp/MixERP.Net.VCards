@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using MixERP.Net.VCards.Models;
 using MixERP.Net.VCards.Types;
@@ -9,6 +10,11 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
+            if (vcard.CalendarUserAddresses == null || vcard.CalendarUserAddresses.Count() == 0)
+            {
+                return string.Empty;
+            }
+
             //Only vCard 4.0 supports CALADRURI property
             if (vcard.Version != VCardVersion.V4)
             {

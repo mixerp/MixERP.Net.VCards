@@ -26,6 +26,7 @@ namespace MixERP.Net.VCards
                 }
 
                 var keys = AllParsers.Parsers.Keys.ToList();
+
                 foreach (var key in keys)
                 {
                     var pattern = "^" + Regex.Escape(key).Replace("\\*", ".*") + "$";
