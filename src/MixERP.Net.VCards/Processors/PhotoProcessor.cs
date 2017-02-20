@@ -1,5 +1,6 @@
 using System;
 using MixERP.Net.VCards.Extensions;
+using MixERP.Net.VCards.Helpers;
 using MixERP.Net.VCards.Models;
 
 namespace MixERP.Net.VCards.Processors
@@ -14,7 +15,9 @@ namespace MixERP.Net.VCards.Processors
             }
 
             var extension = vcard.Photo.Extension.Coalesce("jpg");
-            return Base64StringProcessor.SerializeBase64String(vcard.Photo.Contents, "PHOTO", extension, vcard.Version);
+            var mimeType = ImageMimeHelper.GetMimeType(extension);
+
+            return Base64StringProcessor.SerializeBase64String(vcard.Photo.Contents, "PHOTO", mimeType, vcard.Version);
         }
 
         private static bool IsBase64(string contents)
@@ -62,6 +65,7 @@ namespace MixERP.Net.VCards.Processors
 
             return new Photo(isEmbedded, extension, data);
         }
+
         public static void Parse(Token token, ref VCard vcard)
         {
             vcard.Photo = GetPhoto(token, vcard);

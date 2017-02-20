@@ -2,7 +2,6 @@ BEGIN:VCARD
 VERSION:4.0
 FN:John Doe
 N:Doe;John;;;
-TZ:
 CLASS:PUBLIC
 KIND:individual
 GENDER:U

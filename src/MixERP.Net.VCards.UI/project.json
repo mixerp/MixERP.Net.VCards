@@ -7,7 +7,7 @@
       "type": "platform",
       "version": "1.0.1"
     },
-    "MixERP.Net.VCards": "1.0.6",
+    "MixERP.Net.VCards": "1.0.7",
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
