@@ -14,7 +14,7 @@ namespace MixERP.Net.VCards
 
             if (string.IsNullOrWhiteSpace(contents) || !contents.TrimStart().StartsWith("BEGIN:VCARD") || !contents.TrimEnd().EndsWith("END:VCARD"))
             {
-                return vcard;
+                throw new VCardParseException("The input is not a valid vCard file.");
             }
 
             var tokens = TokenParser.Parse(contents);
