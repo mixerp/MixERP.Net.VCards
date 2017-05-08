@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Text.RegularExpressions;
 
 namespace MixERP.Net.VCards.Helpers
 {
@@ -6,8 +6,7 @@ namespace MixERP.Net.VCards.Helpers
     {
         public static string[] SplitCards(string contents)
         {
-            contents = contents.Replace("BEGIN:VCARD", "");
-            return contents.Split(new[] { "END:VCARD" }, StringSplitOptions.RemoveEmptyEntries);
+            return Regex.Split(contents, "((BEGIN:VCARD)(.*)(END:VCARD))");
         }
     }
 }
