@@ -40,7 +40,7 @@ namespace MixERP.Net.VCards.Parser
                 {
                     value = splitted[1].Trim('"').Trim('\'');
                 }
-                if (members.ContainsKey(key))
+                if (!members.ContainsKey(key))
                 {
                     members.Add(key, value);
                 }
